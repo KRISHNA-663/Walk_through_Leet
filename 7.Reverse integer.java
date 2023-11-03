@@ -1,14 +1,26 @@
 class Solution {
     public int reverse(int x) {
-        long res=0;
-        while(x!=0)
-        {
-            res=res*10+x%10;
-            x/=10;
-        } 
-        return (res<Integer.MIN_VALUE || res>Integer.MAX_VALUE)? 0 : (int)res;
+        int sum = 0;
+        int mod = 0;
+        int f = 0;
 
-        /* => The ternary operator is used for the case of an input number that might be out of range.
-           => So we use res<Integer.MIN_VALUE || res>Integer.MAX_VALUE to overcome such cases!*/
+        if (x < 0) {
+            x = -x;
+            f = 1;
+        }
+
+        while (x != 0) {
+            mod = x % 10;
+            if (sum > (Integer.MAX_VALUE - mod) / 10) {
+                return 0; 
+            }
+            sum = sum * 10 + mod;
+            x = x / 10;
+        }
+
+        if (f == 1) {
+            return -sum;
+        }
+        return sum;
     }
 }
