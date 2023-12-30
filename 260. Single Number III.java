@@ -10,7 +10,7 @@ class Solution {
         {
             if((z & (1 << i)) != 0)
             {
-                pos = i;
+                pos  = i;
                 break;
             }
         }
